@@ -2,28 +2,38 @@ import { useState } from "react";
 
 export default function Whatif() {
 
-    const [currentSavings, setcurrentSavings] = useState(null);
-    const [monthlyContribution, setmonthlyContribution] = useState(null);
-    const [expectedReturn, setexpectedReturn] = useState(null);
-    const [duration, setduration] = useState(null);
-    const [result, setResult] = useState(null);
+    let [currentSavings, setcurrentSavings] = useState(null);
+    let [monthlyContribution, setmonthlyContribution] = useState(null);
+    let [expectedReturn, setexpectedReturn] = useState(null);
+    let [duration, setduration] = useState(null);
+
+    // let [resultData, setResultData] = useState([]);
+    const resultData = []
+
 
     const handleInvestment = () => {
-        setResult(currentSavings + monthlyContribution + expectedReturn + duration)
+        // setResult(currentSavings + monthlyContribution + expectedReturn + duration)
+
 
         let yearlyContribution = monthlyContribution * 12
 
-        // for (let i = 0; i < duration; i++) {
-        //     let yearlyInterest = currentSavings * expectedReturn;
-        //     currentSavings += yearlyInterest + yearlyContribution;
-        //     console.log(({
-        //       year: i + 1,
-        //       yearlyInterest: yearlyInterest,
-        //       savingsEndOfYear: currentSavings,
-        //       yearlyContribution: yearlyContribution,
-        //     }));
+        for (let i = 0; i < duration; i++) {
+            let yearlyInterest = currentSavings * expectedReturn;
+            currentSavings += yearlyInterest + yearlyContribution;
+            resultData.push(({
+              setyear: i + 1,
+              yearlyInterest: yearlyInterest,
+              savingsEndOfYear: currentSavings,
+              yearlyContribution: yearlyContribution,
+            }));
+            console.log(({
+              setyear: i + 1,
+              yearlyInterest: yearlyInterest,
+              savingsEndOfYear: currentSavings,
+              yearlyContribution: yearlyContribution,
+            }));
 
-        //   }
+          }
     }
 
     return (
@@ -97,7 +107,7 @@ export default function Whatif() {
 
         </div>
         <div class="column box is-two-third">
-            {result}
+            {resultData}
         </div>
     </div>
     ) 

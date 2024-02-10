@@ -1,16 +1,22 @@
 import 'bulma/css/bulma.min.css';
 import React from 'react';
+import {useNavigate} from 'react-router-dom'
 
 // import fintech from '/'
 
 export default function Welcome() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+      navigate('/login');
+    };
+
   return (
         <div class="content" style={{margin: 60}}>
         <h1>Hello World</h1>
         <span>
             <p>Lorem ipsum<sup><a>[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Sub<sub>script</sub> works as well!</p>
-
-            <button class="button" href='/login'>Log In</button>
+            <button class="button" onClick={handleLoginClick}>Log In</button>
         </span>
      
         <h2>Second level</h2>

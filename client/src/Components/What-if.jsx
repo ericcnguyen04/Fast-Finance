@@ -107,6 +107,19 @@ export default function Whatif() {
 
         </div>
         <div class="column box is-two-third">
+            <table class="table">
+            <thead>
+                <tr>
+                <th><abbr title="Year">Yr</abbr></th>
+                <th><abbr title="Total">Total</abbr></th>
+                <th><abbr title="Total Interest">Total Interest</abbr></th>
+                <th><abbr title="YTD Interest">YTD Interest</abbr></th>
+                <th><abbr title="Contribution">Contribution</abbr></th>
+
+                <th>Qualification or relegation</th>
+                </tr>
+            </thead>
+            </table>
             {resultData}
         </div>
     </div>

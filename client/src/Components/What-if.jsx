@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function Whatif() {
+
+    let [initialSavings, setInitialSavings] = useState(null); // starting balance
     let [currentSavings, setCurrentSavings] = useState(null); // starting balance
     let [monthlyContribution, setmonthlyContribution] = useState(null); // monthly deposit
     let [expectedReturn, setexpectedReturn] = useState(null); // expected return
@@ -15,17 +17,19 @@ export default function Whatif() {
         let yearlyContribution = monthlyContribution * 12
         let returnProfit = expectedReturn / 100
         let newData = [];
-        let TotalContribution = currentSavings
+        let TotalContribution = initialSavings
 
         for (let i = 0; i < duration; i++) {
             currentSavings = currentSavings * (1 + returnProfit) + yearlyContribution
-            TotalContribution = currentSavings + yearlyContribution
+            TotalContribution = TotalContribution + yearlyContribution 
+            
+            let TotalInvestment = parseFloat(currentSavings) - parseFloat(TotalContribution)
 
             newData.push(({
               setyear: i + 1,
               TotalEquity: currentSavings.toFixed(2), // fucked up
-            //   TotalInvestment: interestEarned,
-              TotalContribution: TotalContribution,
+              TotalInvestment: TotalInvestment.toFixed(2),
+              TotalContribution: TotalContribution.toFixed(2),
               yearlyContribution: yearlyContribution,
             }));
         }
@@ -44,7 +48,10 @@ export default function Whatif() {
             <div class="control has-icons-left has-icons-right">
             <h2>How much are you investing currently?</h2>
                 <input class="input is-medium" type="initial" placeholder="Current Investment"
-                    onChange={e => setCurrentSavings(e.target.value)}
+                    onChange={e => {const value = parseFloat(e.target.value)
+                    setCurrentSavings(value)
+                    setInitialSavings(value)}
+                    }
                 />
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope fa-xs"></i>
@@ -120,6 +127,7 @@ export default function Whatif() {
                         <td>{data.setyear}</td>
                         <td>{data.TotalEquity}</td>
                         <td>{data.TotalInvestment}</td>
+                        <td>{data.TotalContribution}</td>
                         <td>{data.yearlyContribution}</td>
                     </tr>
                 ))}

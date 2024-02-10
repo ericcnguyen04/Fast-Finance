@@ -2,10 +2,35 @@ import { useState } from "react";
 
 export default function Whatif() {
 
-    const [userInput, setUserInput] = useState(null);
+    let [initialInv, setinitialInv] = useState(null);
+    let [monthlyInv, setmonthlyInv] = useState(null);
+    let [annualRate, setannualRate] = useState(null);
+    let [years, setYears] = useState(null);
 
+    let [result, setResult] = useState(null)
     const handleInvestment = () => {
-        console.log('yes')
+        result = setResult(initialInv + monthlyInv + annualRate + years)
+
+        for (let i = 0; i < years; i++) {
+            const yearlyInterest = initialInv * annualRate;
+            currentSavings += yearlyInterest + (monthlyInv * 12);
+            yearlyData.push({
+              year: i + 1,
+              yearlyInterest: yearlyInterest,
+              savingsEndOfYear: currentSavings,
+              yearlyContribution: yearlyContribution,
+            });
+          }
+        // for (let i = 0; i < duration; i++) {
+        //     const yearlyInterest = currentSavings * expectedReturn;
+        //     currentSavings += yearlyInterest + yearlyContribution;
+        //     yearlyData.push({
+        //       year: i + 1,
+        //       yearlyInterest: yearlyInterest,
+        //       savingsEndOfYear: currentSavings,
+        //       yearlyContribution: yearlyContribution,
+        //     });
+        //   }
     }
 
     return (
@@ -18,7 +43,9 @@ export default function Whatif() {
             </label>
             <div class="control has-icons-left has-icons-right">
             <h2>How much are you investing currently?</h2>
-                <input class="input is-medium" type="initial" placeholder="Current Investment"/>
+                <input class="input is-medium" type="initial" placeholder="Current Investment"
+                    onChange={e => setinitialInv(e.target.value)}
+                />
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope fa-xs"></i>
                 </span>
@@ -31,7 +58,9 @@ export default function Whatif() {
             <div class="field">
             <div class="control has-icons-left has-icons-right">
             <h2>How much will you invest monthly?</h2>
-                <input class="input is-medium" type="monthly" placeholder="Monthly Investment"/>
+                <input class="input is-medium" type="monthly" placeholder="Monthly Investment"
+                    onChange={e => setmonthlyInv(e.target.value)}
+                />
                 <span class="icon is-left">
                 <i class="fas fa-envelope fa-sm"></i>
                 </span>
@@ -44,7 +73,9 @@ export default function Whatif() {
             <div class="field">
             <div class="control has-icons-left has-icons-right">
             <h2>What will the annual rate be?</h2>
-                <input class="input is-medium" type="email" placeholder="Annual rate"/>
+                <input class="input is-medium" type="email" placeholder="Annual rate"
+                    onChange={e => setannualRate(e.target.value)}
+                />
                 <span class="icon is-medium is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -57,7 +88,10 @@ export default function Whatif() {
             <div class="field">
             <div class="control has-icons-left has-icons-right">
             <h2>How many years will the money be growing?</h2>
-                <input class="input is-medium" type="email" placeholder="Years "/>
+                <input class="input is-medium" type="email" placeholder="Years "
+                    onChange={e => setYears(e.target.value)}
+
+                />
                 <span class="icon is-medium is-left">
                 <i class="fas fa-envelope"></i>
                 </span>
@@ -71,7 +105,7 @@ export default function Whatif() {
 
         </div>
         <div class="column box is-two-third">
-            {userInput}
+            {result}
         </div>
     </div>
     ) 

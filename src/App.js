@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 
 import Login from './Components/Login'
 import Navbar from './Components/Navbar'
+import Whatif from './Components/What-if'
 import Profile from './Components/Profile'
 import Register from './Components/Register'
 import Welcome from './Components/Welcome'
@@ -29,18 +30,23 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <header>
+        <header>
           <Navbar 
             currentUser={currentUser}
             handleLogout={handleLogout}
           />
-        </header> */}
+        </header>
 
         <div className="App">
           <Routes>
             <Route 
               path="/"
               element={<Welcome />}
+            />
+
+            <Route 
+              path="/whatif"
+              element={<Whatif />}
             />
 
             <Route 

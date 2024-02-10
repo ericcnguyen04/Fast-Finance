@@ -1,4 +1,4 @@
-body {
+.login {
     /* font-family: "Cursive", fantasy; */
     margin: 0;
     display: flex;
@@ -11,8 +11,8 @@ body {
   
   .container {
     width: 100%;
-    min-width: 400px
-    /* max-width: 400px; */
+    min-width: 300px;
+    max-width: 300px;
   }
   
   .card {

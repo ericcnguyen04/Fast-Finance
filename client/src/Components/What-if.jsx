@@ -1,39 +1,32 @@
 import { useState } from "react";
 
 export default function Whatif() {
-
-    let [currentSavings, setcurrentSavings] = useState(null);
+    let [currentSavings, setCurrentSavings] = useState(null);
     let [monthlyContribution, setmonthlyContribution] = useState(null);
     let [expectedReturn, setexpectedReturn] = useState(null);
     let [duration, setduration] = useState(null);
 
     // let [resultData, setResultData] = useState([]);
-    const resultData = []
+    const [resultData, setResultData] = useState([]);
+
 
 
     const handleInvestment = () => {
-        // setResult(currentSavings + monthlyContribution + expectedReturn + duration)
-
-
         let yearlyContribution = monthlyContribution * 12
+        let newData = [];
 
         for (let i = 0; i < duration; i++) {
-            let yearlyInterest = currentSavings * expectedReturn;
+            let yearlyInterest = currentSavings * (expectedReturn / 100);
             currentSavings += yearlyInterest + yearlyContribution;
-            resultData.push(({
+            newData.push(({
               setyear: i + 1,
               yearlyInterest: yearlyInterest,
               savingsEndOfYear: currentSavings,
               yearlyContribution: yearlyContribution,
             }));
-            console.log(({
-              setyear: i + 1,
-              yearlyInterest: yearlyInterest,
-              savingsEndOfYear: currentSavings,
-              yearlyContribution: yearlyContribution,
-            }));
-
           }
+
+        setResultData(newData)
     }
 
     return (
@@ -47,7 +40,7 @@ export default function Whatif() {
             <div class="control has-icons-left has-icons-right">
             <h2>How much are you investing currently?</h2>
                 <input class="input is-medium" type="initial" placeholder="Current Investment"
-                    onChange={e => setcurrentSavings(e.target.value)}
+                    onChange={e => setCurrentSavings(e.target.value)}
                 />
                 <span class="icon is-small is-left">
                 <i class="fas fa-envelope fa-xs"></i>
@@ -106,22 +99,29 @@ export default function Whatif() {
             <button class="button is-primary" onClick={handleInvestment}>Primary</button>
 
         </div>
-        <div class="column box is-two-third">
-            <table class="table">
+        <div class="column box is-one-third">
+        <table class="table">
             <thead>
                 <tr>
-                <th><abbr title="Year">Yr</abbr></th>
-                <th><abbr title="Total">Total</abbr></th>
-                <th><abbr title="Total Interest">Total Interest</abbr></th>
-                <th><abbr title="YTD Interest">YTD Interest</abbr></th>
-                <th><abbr title="Contribution">Contribution</abbr></th>
-
-                <th>Qualification or relegation</th>
+                    <th>Year</th>
+                    <th>Yearly Interest</th>
+                    <th>Savings End of Year</th>
+                    <th>Yearly Contribution</th>
                 </tr>
             </thead>
-            </table>
-            {resultData}
-        </div>
+            <tbody>
+                {resultData.map((data, index) => (
+                    <tr key={index}>
+                        <td>{data.setyear}</td>
+                        <td>{data.yearlyInterest}</td>
+                        <td>{data.savingsEndOfYear}</td>
+                        <td>{data.yearlyContribution}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+
     </div>
     ) 
 }

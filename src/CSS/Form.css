@@ -1,0 +1,61 @@
+body {
+    font-family: "Cursive", fantasy;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #7d4e20, #ae8f54);
+    color: #fff;
+  }
+  
+  .container {
+    width: 100%;
+    min-width: 400px
+    /* max-width: 400px; */
+  }
+  
+  .card {
+    background-color: #8b4513;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ae8f54;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+    color: #fff;
+  }
+  
+  input:focus {
+    border-color: #7d4e20;
+  }
+  
+  button {
+    background-color: #ae8f54;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #7d4e20;
+  }
+  

@@ -29,12 +29,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <header>
+        {/* <header>
           <Navbar 
             currentUser={currentUser}
             handleLogout={handleLogout}
           />
-        </header>
+        </header> */}
 
         <div className="App">
           <Routes>
@@ -43,10 +43,7 @@ function App() {
               element={<Welcome />}
             />
 
-            <Route 
-              path="/register"
-              element={<Register currentUser={currentUser} setCurrentUser={setCurrentUser} />}
-            />
+32
 
             <Route 
               path="/login"

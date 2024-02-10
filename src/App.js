@@ -54,6 +54,16 @@ function App() {
               element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />}
             />
 
+            <Route 
+              path="/profile"
+              element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+            />
+
+            <Route 
+              path="/table"
+              element={<Table currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+            />
+
           </Routes>
         </div>
       </Router>

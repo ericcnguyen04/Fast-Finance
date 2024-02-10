@@ -1,71 +1,64 @@
-# Getting Started with Create React App
+# Fast Finance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Approach
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technology Used
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## TechStack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Wireframe
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+This project will consist of canvas
+and will be formatted like a 2012 web games like y3 or y8
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Title: Bird Time
+Header: with a logo and additonal user features (log in) mainly for design rather than actually logging in
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Two Aside: used as borders to center the canvas, the aside will be a background to set the theme of the website
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Canvas: the main scene of where the game will take place
 
-### `npm run eject`
+Section: below the canvas is the description of the game, and the controls
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Footer: a footer will be at the bottom of the page for design purposes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## MVP Goals
+One of the first forms of functionality I need to do is the hopping of the bird.
+Then, create pipes that will randomize the gap of the pipes, and make the pipes go towards the bird
+- click to start the game
+- control the bird's hopping by clicking on the w key
+- create pipes as obstacles
+- create a function where pipes move towards the bird as soon as the game starts
+- repeat the pipe function so that endless amounts of pipes go towards the bird, with different position of the gaps
+- stop the game if the bird's hitbox comes in contact with the pipe
+- display a point system to show you your results and a button to redo/play again
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## STRETCH Goals
+- adding 'skins' to the game -- ability to change the bird's appearance
+- adding difficulties for player experience
+- adding additional features like links as if it was a website
+- provide the bird an animation by facing up and down depending on the process of the hopping
+- provide a background with animation to display movement
 
-## Learn More
+## Post Project Reflection
+A very challenging, yet achievable project. As I pitched this project, I believed it was too hard of a challenge for me to start with, but I was motivated and passionate to complete it!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+During the process, it felt impossible sometimes. Research was done and nothing felt more alive after figuring out a problem, whether it's debugging or adding features.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It is absolutely absolutely wild how I designed this within three weeks of committing to coding. I am very proud of what I accomplished and I never felt more productive, genuinely.
 
-### Code Splitting
+## Sources Used
+W3Schools, geeksforgeeks -- reminders on the syntax and what resources I have avaliable to me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+aaarafat JS-Flappy-Bird github -- a similar project to find inspiration and strategies in order for me to figure out a way to implement their methods onto my project
 
-### Analyzing the Bundle Size
+Stackoverflow -- joining with the community and using open resources as a method of problem solving
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+OpenGameArt -- used for a background
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Fast-Finance
+Slay the Ogre project -- a program I used as reference for canvas

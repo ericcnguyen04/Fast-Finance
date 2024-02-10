@@ -16,15 +16,19 @@ export default function Whatif() {
         let newData = [];
 
         for (let i = 0; i < duration; i++) {
-            let yearlyInterest = currentSavings * (expectedReturn / 100);
-            currentSavings += yearlyInterest + yearlyContribution;
+            // let yearlyInterest = currentSavings * (expectedReturn / 100);
+            // currentSavings += parseInt(yearlyInterest) + parseInt(yearlyContribution);
+            interestEarned = currentSavings * (expectedReturn / 100)
+
+            currentSavings
+
             newData.push(({
               setyear: i + 1,
+              savingsEndOfYear: currentSavings, // fucked up
               yearlyInterest: yearlyInterest,
-              savingsEndOfYear: currentSavings,
               yearlyContribution: yearlyContribution,
             }));
-          }
+        }
 
         setResultData(newData)
     }
@@ -33,7 +37,7 @@ export default function Whatif() {
     <div class="columns">
         <div class="column box is-one-third">
 
-        <div class="field">
+            <div class="field">
             <label class="label is-medium">
                 What if you set a budget for investments?
             </label>
@@ -99,22 +103,23 @@ export default function Whatif() {
             <button class="button is-primary" onClick={handleInvestment}>Primary</button>
 
         </div>
-        <div class="column box is-one-third">
+        <div class="column box is-two-third">
         <table class="table">
             <thead>
                 <tr>
                     <th>Year</th>
-                    <th>Yearly Interest</th>
-                    <th>Savings End of Year</th>
-                    <th>Yearly Contribution</th>
+                    <th>Total Equity</th>
+                    <th>Total Investment</th>
+                    <th>Total Contribution</th>
+                    <th>YTD Interest</th>
                 </tr>
             </thead>
             <tbody>
                 {resultData.map((data, index) => (
                     <tr key={index}>
                         <td>{data.setyear}</td>
-                        <td>{data.yearlyInterest}</td>
                         <td>{data.savingsEndOfYear}</td>
+                        <td>{data.yearlyInterest}</td>
                         <td>{data.yearlyContribution}</td>
                     </tr>
                 ))}

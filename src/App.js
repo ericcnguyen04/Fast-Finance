@@ -10,7 +10,6 @@ import Login from './Components/Login'
 import Navbar from './Components/Navbar'
 import Profile from './Components/Profile'
 import Register from './Components/Register'
-import Table from './Components/Table'
 import Welcome from './Components/Welcome'
 
 function App() {
@@ -57,11 +56,6 @@ function App() {
             <Route 
               path="/profile"
               element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />}
-            />
-
-            <Route 
-              path="/table"
-              element={<Table currentUser={currentUser} setCurrentUser={setCurrentUser} />}
             />
 
           </Routes>

@@ -39,7 +39,11 @@ export default function Navbar () {
                     </a>
 
                     <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
-                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true">
+                            <a className="navbar-item" href='/table'>
+                                <strong>Table</strong>
+                            </a>
+                        </span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                     </a>
@@ -50,19 +54,12 @@ export default function Navbar () {
                         <a className="navbar-item" href='/table'>
                             <strong>Table</strong>
                         </a>
-                    </div>
-
-                    {/* <div className="navbar-end">
-                        {currentUser ? loggedIn : loggedOut}
-                    </div> */}
-                </div>
-            </div>
-
-                <div id="navbarBasicExample" className="navbar-menu">
-                    <div className="navbar-start">
                         <a className="navbar-item" href='/whatif'>
                             <strong>What if?</strong>
                         </a>
+                        {/* <a className="navbar-item" href='/table'>
+                            <strong>Table</strong>
+                        </a> */}
                     </div>
 
                     {/* <div className="navbar-end">

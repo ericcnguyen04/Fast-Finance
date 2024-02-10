@@ -13,11 +13,11 @@
     width: 100%;
     min-width: 300px;
     max-width: 300px;
-    border: solid red 5px;
+    /* border: solid red 5px; */
   }
   
   .card {
-    background-color: #8b4513;
+    /* background-color: #8b4513; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -43,7 +43,10 @@ function App() {
               element={<Welcome />}
             />
 
-32
+            <Route 
+              path="/register"
+              element={<Register currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+            />
 
             <Route 
               path="/login"

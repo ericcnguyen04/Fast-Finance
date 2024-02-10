@@ -1,5 +1,5 @@
 body {
-    font-family: "Cursive", fantasy;
+    /* font-family: "Cursive", fantasy; */
     margin: 0;
     display: flex;
     align-items: center;
@@ -22,8 +22,11 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  h1 {
+.swag {
     text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 200;
+    font-size: 45;
   }
   
   #form {

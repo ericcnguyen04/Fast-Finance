@@ -6,13 +6,34 @@ export default function Login () {
             <div className='login'>
             <div class="container">
                 <div class="card">
-                    <h1>Login</h1>
-                    <div id='form'>
-                        <input type="text" id="username" name="username" placeholder="Enter your name" required/>
-                        <input type="password" id="password" name="password" placeholder="Enter your secret password" required/>
-                        <button type="submit">Login</button>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <h1 className='swag'>Log In</h1>
+                        <input class="input" type="email" placeholder="Email"/>
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                    <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input" type="password" placeholder="Password"/>
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
                     </div>
-                <a href='/register'>Create an account</a>
+                    <div class="field">
+                    <p class="control">
+                        <button class="button is-success">
+                        Login
+                        </button>
+                    </p>
+                    </div>
+                    <a href='/register'>Create an account?</a>
                 </div>
             </div>
             </div>

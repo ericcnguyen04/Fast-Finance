@@ -30,7 +30,7 @@ export default function Whatif() {
               TotalEquity: currentSavings.toFixed(2), // fucked up
               TotalInvestment: TotalInvestment.toFixed(2),
               TotalContribution: TotalContribution.toFixed(2),
-              yearlyContribution: yearlyContribution,
+            //   yearlyContribution: yearlyContribution,
             }));
         }
 
@@ -118,7 +118,7 @@ export default function Whatif() {
                     <th>Total Equity</th>
                     <th>Total Investment</th>
                     <th>Total Contribution</th>
-                    <th>YTD Interest</th>
+                    {/* <th>YTD Interest</th> */}
                 </tr>
             </thead>
             <tbody>
@@ -128,7 +128,7 @@ export default function Whatif() {
                         <td>{data.TotalEquity}</td>
                         <td>{data.TotalInvestment}</td>
                         <td>{data.TotalContribution}</td>
-                        <td>{data.yearlyContribution}</td>
+                        {/* <td>{data.yearlyContribution}</td> */}
                     </tr>
                 ))}
             </tbody>

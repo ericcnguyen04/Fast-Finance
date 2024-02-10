@@ -57,6 +57,19 @@ export default function Navbar () {
                     </div> */}
                 </div>
             </div>
+
+                <div id="navbarBasicExample" className="navbar-menu">
+                    <div className="navbar-start">
+                        <a className="navbar-item" href='/whatif'>
+                            <strong>What if?</strong>
+                        </a>
+                    </div>
+
+                    {/* <div className="navbar-end">
+                        {currentUser ? loggedIn : loggedOut}
+                    </div> */}
+                </div>
+            </div>
         </nav>
     )
 }

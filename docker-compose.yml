@@ -1,0 +1,24 @@
+version: "3"
+services:
+    server:
+        image: fastfi/server:1.0
+        ports:
+            - "5000:5000"
+        networks:
+            - fastfi
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"
+        networks:
+            - fastfi
+        volumes:
+            - mongo-data:/data/db
+networks:
+    fastfi:
+        driver: bridge
+volumes:
+    mongo-data:
+        driver: local

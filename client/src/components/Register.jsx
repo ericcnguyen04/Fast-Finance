@@ -1,4 +1,4 @@
-import '../CSS/Form.css'
+import "../CSS/Form.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -70,8 +70,8 @@ function UpdateUsr(e) {
     UpdateUser(e);
 }
 
-export default function Register () {
-        const { user, isLoading } = useAuth0();
+export default function Register() {
+    const { user, isLoading } = useAuth0();
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
@@ -88,80 +88,106 @@ export default function Register () {
 
     return (
         <div>
-            <div className='login'>
-            <div class="container">
-                <div class="card">
-                <div class="field">
-                    <p class="control has-icons-left has-icons-right">
-                        <h1 className='swag'>Register</h1>
-                        <input class="input" type="name" placeholder="Name"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                        </span>
-                        <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
-                        </span>
-                    </p>
+            <div className="login">
+                <div className="container">
+                    <div className="card">
+                        <div className="field">
+                            <p className="control has-icons-left has-icons-right">
+                                <h1 className="swag">Register</h1>
+                                <input
+                                    className="input"
+                                    type="name"
+                                    placeholder="Name"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-envelope"></i>
+                                </span>
+                                <span className="icon is-small is-right">
+                                    <i className="fas fa-check"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="email"
+                                    placeholder="Email"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="password"
+                                    placeholder="Password"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="address"
+                                    placeholder="Address"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="city"
+                                    placeholder="City"
+                                />
+                                <span className="icon is-small is-left"></span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="state"
+                                    placeholder="State"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input
+                                    className="input"
+                                    type="zipcode"
+                                    placeholder="Zipcode"
+                                />
+                                <span className="icon is-small is-left">
+                                    <i className="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control">
+                                <button className="button is-success">
+                                    Register
+                                </button>
+                            </p>
+                        </div>
+                        <a href="/login">Already have an account?</a>
+                    </div>
                 </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="email" placeholder="Email"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="password" placeholder="Password"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="address" placeholder="Address"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="city" placeholder="City"/>
-                        <span class="icon is-small is-left">
-
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="state" placeholder="State"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" type="zipcode" placeholder="Zipcode"/>
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                        </span>
-                    </p>
-                    </div>
-                    <div class="field">
-                    <p class="control">
-                        <button class="button is-success">
-                        Register
-                        </button>
-                    </p>
-                    </div>
-                    <a href='/login'>Already have an account?</a>
-                </div>
-            </div>
             </div>
         </div>
-    )
+    );
 }

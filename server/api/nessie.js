@@ -551,8 +551,8 @@ class Nessie {
             let credit_card = new Account(
                 "Credit Card",
                 "Savor One Rewards",
-                randomBalance(25, 150),
-                randomBalance(400, 780)
+                0.0,
+                randomBalance(500, 1000)
             );
             credit_card = await this.create_account(customer_id, credit_card);
 
@@ -571,23 +571,26 @@ class Nessie {
             };
 
             const generatePurchases = async (account_id, n) => {
-                for (let i = 0; i < n; i++) {
-                    let date = randomDate(Date.now(), 14);
-                    let cost = randomBalance(8, 35);
-                    let merchant = random_merchant();
-                    let p = new Purchase(
-                        merchant["_id"],
-                        "balance",
-                        date,
-                        cost,
-                        `$${cost} @ ${merchant}`
-                    );
-                    let resp = await this.create_purchase(account_id, p);
-                }
+                const loop = async () => {
+                    for (let i = 0; i < n; i++) {
+                        let date = randomDate(Date.now(), 14);
+                        let cost = randomBalance(8, 35);
+                        let merchant = random_merchant();
+                        let p = new Purchase(
+                            merchant["_id"],
+                            "balance",
+                            date,
+                            cost,
+                            `$${cost} @ ${merchant}`
+                        );
+                        let resp = await this.create_purchase(account_id, p);
+                    }
+                };
+                await loop();
             };
 
-            await generatePurchases(checking["objectCreated"]["_id"], 50);
-            await generatePurchases(credit_card["objectCreated"]["_id"], 50);
+            await generatePurchases(checking["objectCreated"]["_id"], 7);
+            await generatePurchases(credit_card["objectCreated"]["_id"], 7);
         } catch (e) {
             console.log(e);
         }

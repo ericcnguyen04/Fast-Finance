@@ -38,7 +38,7 @@ export default function Whatif() {
     }
 
     return (
-    <div class="columns">
+    <div class="container ">
         <div class="column box is-one-third">
 
             <div class="field">

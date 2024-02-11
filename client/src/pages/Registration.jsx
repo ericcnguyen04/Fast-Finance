@@ -11,22 +11,30 @@ const AuthRedir = () => {
 };
 
 const AccountRedir = async (user) => {
-    let API_URL = process.env.REACT_APP_API_URL;
-    let response = await fetch(`${API_URL}/api/users/${user.sub}`, {
-        method: "GET",
-        redirect: "follow",
-        mode: "cors",
-    });
+    try {
 
-    let body = await response.json();
+        let API_URL = process.env.REACT_APP_API_URL;
+        let response = await fetch(`${API_URL}/api/users/${user.sub}`, {
+            method: "GET",
+            redirect: "follow",
+            mode: "cors",
+        });
+    
+        let body = await response.json();
 
-    if (!body) {
-        return false;
+        console.log(body)
+    
+        if (!body) {
+            return false;
+        }
+    
+        let registered = body.registered === true ? true : false;
+    
+        return response.status === 200 && registered;
+    } catch(e) {
+        console.log(e)
+        return false
     }
-
-    let registered = body.registered === true ? true : false;
-
-    return response.status === 200 && registered;
 };
 
 function CreateUser(user) {
@@ -88,9 +96,9 @@ const RegistrationForm = () => {
     }, [user, setUsr, isLoading, usr]);
 
     return (
-        <div className='container'>
-                <h1>Register</h1>
-            <div className='card'>
+        <div>
+            <h1>Register</h1>
+            <div className='box '>
                 <form className='field'
                     onSubmit={UpdateUsr.bind(this, {
                         first_name: fname,
@@ -103,64 +111,81 @@ const RegistrationForm = () => {
                         auth0_uid: user.sub,
                     })}
                 >
-                    <input
-                        className='input'
-                        type="text"
-                        id="fname"
-                        value={fname}
-                        onChange={(e) => setFname(e.target.value)}
-                        placeholder="First Name"
-                    />
-                    <br />
-                    <input
-                        className='input'
-                        type="text"
-                        id="lname"
-                        value={lname}
-                        onChange={(e) => setLname(e.target.value)}
-                        placeholder="Last Name"
-                    />
-                    <br />
-
-                    <input
-                        className='input'
-                        type="text"
-                        id="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Address"
-                    />
-                    <br />
-                    <input
-                        className='input'
-                        type="text"
-                        id="city"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        placeholder="City"
-                    />
-                    <br />
-                    <input
-                        className='input'
-                        type="text"
-                        id="state"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        placeholder="State"
-                    />
-                    <br />
-                    <input
-                        className='input'
-                        type="text"
-                        id="zip"
-                        value={zip}
-                        onChange={(e) => setZip(e.target.value)}
-                        placeholder="Zip Code"
-                    />
-                    <br />
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="fname"
+                            value={fname}
+                            onChange={(e) => setFname(e.target.value)}
+                            placeholder="First Name"
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="lname"
+                            value={lname}
+                            onChange={(e) => setLname(e.target.value)}
+                            placeholder="Last Name"
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            placeholder="Address"
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="city"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            placeholder="City"
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="state"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            placeholder="State"
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input
+                            className='input'
+                            type="text"
+                            id="zip"
+                            value={zip}
+                            onChange={(e) => setZip(e.target.value)}
+                            placeholder="Zip Code"
+                        />
+                    </div>
+                </div>
                     <input class="button is-primary" type="submit" />
                 </form>
-            </div>
+                </div>
         </div>
     );
 };

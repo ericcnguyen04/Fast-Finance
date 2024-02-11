@@ -14,7 +14,7 @@ body{
     /* position:absolute; */
     position: relative; /* You can adjust this to absolute or fixed based on your layout */
     z-index: 999;
-
+    margin-top: 10px;
 }
 
 .context {

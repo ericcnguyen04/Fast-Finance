@@ -49,15 +49,15 @@ export default function Home () {
 
     return (
         <div>
+            <div className='block'>
             <table class="table is-hoverable">
-                <thead>
+
                     <tr>
                     <th><abbr title="Checking">Checking</abbr></th>
                     </tr>
-                </thead>
+
                 <tbody>
                 <tr>
-                    <th>1</th>
                         <td>Dummy 1</td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                     <td>$69,420</td>
@@ -73,7 +73,6 @@ export default function Home () {
                 </thead>
                 <tbody>
                 <tr>
-                    <th>1</th>
                         <td>Dummy 1</td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                     <td>$69,420</td>
@@ -89,16 +88,15 @@ export default function Home () {
                 </thead>
                 <tbody>
                 <tr>
-                    <th>1</th>
-                        <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
+                        <td>
                             dummy 1
-                        </a>
                         </td>
                         <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                     <td>$69,420</td>
                 </tr>
             </tbody>
             </table>
+            </div>
         </div>
     )
 }

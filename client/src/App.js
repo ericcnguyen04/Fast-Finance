@@ -5,10 +5,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./components/LogoutButton";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Registration from "./pages/Registration";
-import { StrictMode, useEffect, useState } from "react";
-
 import Welcome from "./components/Welcome";
 import Home from "./components/Home";
+import { StrictMode, useEffect, useState } from "react";
+
 
 const getUser = async (user) => {
     try {

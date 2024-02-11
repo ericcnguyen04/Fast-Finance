@@ -2,6 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import 'bulma/css/bulma.min.css';
 import { useEffect } from 'react';
 import '../css/Welcome.css'
+import Whatif from './Whatif';
+import Graph from './Graph'
 
 export default function Home () {
     const { user, isAuthenticated, isLoading } = useAuth0()
@@ -96,6 +98,8 @@ export default function Home () {
             </tbody>
             </table>
             </div>
+            <Whatif/>
+
         </div>
     )
 }

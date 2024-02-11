@@ -3,7 +3,7 @@ services:
     api_server:
         image: fastfi/api:latest
         ports:
-            - "5000:5000"
+            - "6000:6000"
         networks:
             - fastfi
         depends_on:

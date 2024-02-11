@@ -7,6 +7,9 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Registration from "./pages/Registration";
 import { StrictMode, useEffect, useState } from "react";
 
+import Welcome from "./components/Welcome";
+import Home from "./components/Home";
+
 const getUser = async (user) => {
     try {
         let response = await fetch(
@@ -90,12 +93,11 @@ function AppElement() {
     }, [user, isAuthenticated, isLoading]);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-
+        <div>
+            <header>
                 {isAuthenticated && !isLoading ? (
                     <div>
+                        <Home/>
                         <LogoutButton />
                         <br />
                         <p>{JSON.stringify(accounts, null, 4)}</p>
@@ -103,7 +105,8 @@ function AppElement() {
                         <p>SPEND: {JSON.stringify(spend, null, 4)}</p>
                     </div>
                 ) : (
-                    <LoginButton />
+                    <Welcome />
+                    
                 )}
             </header>
         </div>

@@ -88,69 +88,80 @@ const RegistrationForm = () => {
     }, [user, setUsr, isLoading, usr]);
 
     return (
-        <form
-            onSubmit={UpdateUsr.bind(this, {
-                first_name: fname,
-                last_name: lname,
-                street_number: address,
-                street_name: "",
-                city: city,
-                state: state,
-                zip: zip,
-                auth0_uid: user.sub,
-            })}
-        >
-            <input
-                type="text"
-                id="fname"
-                value={fname}
-                onChange={(e) => setFname(e.target.value)}
-                placeholder="First Name"
-            />
-            <br />
-            <input
-                type="text"
-                id="lname"
-                value={lname}
-                onChange={(e) => setLname(e.target.value)}
-                placeholder="Last Name"
-            />
-            <br />
+        <div className='container'>
+                <h1>Register</h1>
+            <div className='card'>
+                <form className='field'
+                    onSubmit={UpdateUsr.bind(this, {
+                        first_name: fname,
+                        last_name: lname,
+                        street_number: address,
+                        street_name: "",
+                        city: city,
+                        state: state,
+                        zip: zip,
+                        auth0_uid: user.sub,
+                    })}
+                >
+                    <input
+                        className='input'
+                        type="text"
+                        id="fname"
+                        value={fname}
+                        onChange={(e) => setFname(e.target.value)}
+                        placeholder="First Name"
+                    />
+                    <br />
+                    <input
+                        className='input'
+                        type="text"
+                        id="lname"
+                        value={lname}
+                        onChange={(e) => setLname(e.target.value)}
+                        placeholder="Last Name"
+                    />
+                    <br />
 
-            <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Address"
-            />
-            <br />
-            <input
-                type="text"
-                id="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City"
-            />
-            <br />
-            <input
-                type="text"
-                id="state"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-            />
-            <br />
-            <input
-                type="text"
-                id="zip"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-                placeholder="Zip Code"
-            />
-            <br />
-            <input type="submit" />
-        </form>
+                    <input
+                        className='input'
+                        type="text"
+                        id="address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="Address"
+                    />
+                    <br />
+                    <input
+                        className='input'
+                        type="text"
+                        id="city"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        placeholder="City"
+                    />
+                    <br />
+                    <input
+                        className='input'
+                        type="text"
+                        id="state"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        placeholder="State"
+                    />
+                    <br />
+                    <input
+                        className='input'
+                        type="text"
+                        id="zip"
+                        value={zip}
+                        onChange={(e) => setZip(e.target.value)}
+                        placeholder="Zip Code"
+                    />
+                    <br />
+                    <input class="button is-primary" type="submit" />
+                </form>
+            </div>
+        </div>
     );
 };
 

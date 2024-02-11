@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import "bulma/css/bulma.min.css";
 import { useEffect, useState } from "react";
+import Whatif from "./Whatif";
+import Graph from "./Graph";
 
 export default function Home() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -87,7 +89,7 @@ export default function Home() {
 
     return (
         <div>
-            <table className="table is-hoverable">
+            <table className="table is-fullwidth is-hoverable">
                 <thead>
                     <tr>
                         <th>
@@ -205,6 +207,8 @@ export default function Home() {
                     </tr>
                 </tbody>
             </table>
+            <Whatif/>
+            {/* <Graph/> */}
         </div>
     );
 }

@@ -73,23 +73,15 @@ class Account {
  * medium -          string
  * purchase_date -   string
  * amount -          number
- * status -          string
+ * status -          string [INVALID ARGUMENT!] [REPORT TO CAPITAL ONE]
  * description -     string
  */
 class Purchase {
-    constructor(
-        merchant_id,
-        medium,
-        purchase_date,
-        amount,
-        status,
-        description
-    ) {
+    constructor(merchant_id, medium, purchase_date, amount, description) {
         this.merchant_id = merchant_id;
         this.medium = medium;
         this.purchase_date = purchase_date;
         this.amount = amount;
-        this.status = status;
         this.description = description;
     }
 }
@@ -226,7 +218,6 @@ class Nessie {
         }
 
         if (response.status == 201) {
-            console.log(response);
             return response.data;
         }
 
@@ -305,10 +296,9 @@ class Nessie {
      * Create account for given customer.
      * customer_id - number
      * account - Account object
-     * Return ResponseType
+     * Return {} | ResponseType
      */
     async create_account(customer_id, account) {
-        console.log(JSON.stringify(account, null, 4));
         let response = await this.POST(
             `/customers/${customer_id}/accounts`,
             JSON.stringify(account)
@@ -319,10 +309,8 @@ class Nessie {
         }
 
         if (response.status == 201) {
-            return ResponseType.SUCCESS;
+            return response.data;
         }
-
-        console.log(response.data);
 
         return ResponseType.SERVER_FAILURE;
     }
@@ -525,8 +513,6 @@ class Nessie {
             }
         }
 
-        console.log(`Found: ${requested_merchants.length} merchants!`);
-
         return requested_merchants;
     }
 
@@ -553,8 +539,6 @@ class Nessie {
                 randomBalance(4500, 10000)
             );
             checking = await this.create_account(customer_id, checking);
-
-            console.log(checking);
 
             let savings = new Account(
                 "Savings",
@@ -596,18 +580,41 @@ class Nessie {
                         "balance",
                         date,
                         cost,
-                        "posted",
                         `$${cost} @ ${merchant}`
                     );
-                    await this.create_purchase(account_id, p);
+                    let resp = await this.create_purchase(account_id, p);
                 }
             };
 
-            await generatePurchases(checking["_id"], 50);
-            await generatePurchases(credit_card["_id"], 50);
+            await generatePurchases(checking["objectCreated"]["_id"], 50);
+            await generatePurchases(credit_card["objectCreated"]["_id"], 50);
         } catch (e) {
             console.log(e);
         }
+    }
+
+    /*
+     * Cal*culate the total amount spent on a given account.
+     * account_id - string
+     * Return number | ResponseType
+     */
+    async total_spend(account_id) {
+        let purchases = await this.get_purchases(account_id);
+
+        if (
+            purchases == ResponseType.EXCEPTION ||
+            purchases == ResponseType.SERVER_FAILURE
+        ) {
+            return purchases;
+        }
+
+        let spent = 0.0;
+
+        for (let purchase of purchases) {
+            spent += purchase.amount;
+        }
+
+        return spent;
     }
 
     // END DUMMY

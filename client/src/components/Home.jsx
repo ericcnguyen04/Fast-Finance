@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import 'bulma/css/bulma.min.css';
-import { useEffect } from 'react';}
+import { useEffect } from 'react';
 
 export default function Home () {
     const { user, isAuthenticated, isLoading } = useAuth0()
@@ -10,7 +10,7 @@ export default function Home () {
 	useEffect(() => {
         const getUser = async() => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/api/users/${user.sub}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${user.sub}`, {
                     method: "GET",
                     redirect: "follow",
                     mode: "cors"
@@ -41,6 +41,7 @@ export default function Home () {
         (async() => {
             if (isAuthenticated && !isLoading) {
                 let dbUser = await getUser()
+                console.log(dbUser)
                 await getAccounts(dbUser.nessie_id)
             }
         })()

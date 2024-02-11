@@ -5,6 +5,10 @@
     padding: 0px;
 }
 
+:root {
+    --table-cell-padding: 8em 12em; /* Override the default padding */
+}
+
 body{
     font-family: 'Exo', sans-serif;
     color:white

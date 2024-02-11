@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import 'bulma/css/bulma.min.css';
 import { useEffect } from 'react';
+import '../css/Welcome.css'
 
 export default function Home () {
     const { user, isAuthenticated, isLoading } = useAuth0()
@@ -50,22 +51,20 @@ export default function Home () {
     return (
         <div>
             <div className='block'>
-            <table class="table is-hoverable">
-
+            <table class="is-fullwidth table is-hoverable">
                     <tr>
                     <th><abbr title="Checking">Checking</abbr></th>
                     </tr>
-
                 <tbody>
                 <tr>
                         <td>Dummy 1</td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td></td><td></td><td></td>
                     <td>$69,420</td>
                 </tr>
             </tbody>
             </table>
 
-            <table class="table is-hoverable">
+            <table class="is-fullwidth table is-hoverable">
                 <thead>
                     <tr>
                     <th><abbr title="Checking">Savings</abbr></th>
@@ -74,13 +73,13 @@ export default function Home () {
                 <tbody>
                 <tr>
                         <td>Dummy 1</td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td></td><td></td><td></td>
                     <td>$69,420</td>
                 </tr>
             </tbody>
             </table>
             
-            <table class="table is-hoverable">
+            <table class="is-fullwidth table is-hoverable">
                 <thead>
                     <tr>
                     <th><abbr title="Credit">Credit </abbr></th>
@@ -91,7 +90,7 @@ export default function Home () {
                         <td>
                             dummy 1
                         </td>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td></td><td></td><td></td>
                     <td>$69,420</td>
                 </tr>
             </tbody>

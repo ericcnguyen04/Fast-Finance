@@ -1,8 +1,9 @@
 import '../css/Welcome.css'
 import React from 'react';
 import Typewriter from 'typewriter-effect'
-const { useAuth0 } = require("@auth0/auth0-react");
+import 'bulma/css/bulma.min.css';
 
+const { useAuth0 } = require("@auth0/auth0-react");
 
 
 // import fintech from '/'
@@ -14,13 +15,29 @@ export default function Welcome() {
         <div className='welcome'>
             <div class="context">
                 <div>
-                    <h1>Fast Finance</h1>
+                    <h1>FastFi</h1>
                 </div>
                 <div className='contextBio'>
                     <Typewriter 
                         onInit={(typewriter) => {
                             typewriter
                                 .typeString("Give meaning to your cash")
+                                .pauseFor(200)
+                                .start();
+                        }}
+                    />
+                    <Typewriter 
+                        onInit={(typewriter) => {
+                            typewriter
+                                .typeString("Enhance your future")
+                                .pauseFor(200)
+                                .start();
+                        }}
+                    />
+                    <Typewriter 
+                        onInit={(typewriter) => {
+                            typewriter
+                                .typeString("Your digital financial planner")
                                 .pauseFor(200)
                                 .start();
                         }}
@@ -50,11 +67,6 @@ export default function Welcome() {
                     <li></li>
                 </ul>
             </div>
-        
-            <div>
-                <button></button>
-            </div>
-
         </div>
     );
 }

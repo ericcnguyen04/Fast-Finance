@@ -123,7 +123,6 @@ class Nessie {
      */
     async POST(endpoint, data, method = "POST") {
         try {
-            console.log("recv");
             let response;
             if (method == "POST") {
                 response = await this.session.post(
@@ -217,7 +216,7 @@ class Nessie {
     /*
      * Create customer in Nessie API
      * customer - Valid customer object
-     * Return ResponseType
+     * Return {} | ResponseType
      */
     async create_customer(customer) {
         let response = await this.POST("/customers", JSON.stringify(customer));
@@ -226,10 +225,9 @@ class Nessie {
             return ResponseType.EXCEPTION;
         }
 
-        console.log(response);
-
         if (response.status == 201) {
-            return ResponseType.SUCCESS;
+            console.log(response);
+            return response.data;
         }
 
         return ResponseType.SERVER_FAILURE;

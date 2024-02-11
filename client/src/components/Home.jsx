@@ -1,3 +1,4 @@
+
 import { useAuth0 } from "@auth0/auth0-react";
 import "bulma/css/bulma.min.css";
 import { useEffect, useState } from "react";
@@ -94,7 +95,6 @@ export default function Home() {
                             <abbr title="Checking">Checking</abbr>
                         </th>
                     </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>{checking.nickname}</td>
@@ -205,6 +205,9 @@ export default function Home() {
                     </tr>
                 </tbody>
             </table>
+            </div>
+            <Whatif/>
+
         </div>
     );
 }

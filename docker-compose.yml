@@ -8,6 +8,14 @@ services:
             - fastfi
         depends_on:
             - mongo
+    react:
+        image: fastfi/react:latest
+        ports:
+            - "80:80"
+        networks:
+            - fastfi
+        depends_on:
+            - api_server
     mongo:
         image: mongo
         ports:

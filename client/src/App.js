@@ -7,18 +7,22 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Registration from "./pages/Registration";
 import { StrictMode } from "react";
 
+import Welcome from "./components/Welcome";
+import Home from "./components/Home";
+
 function AppElement() {
     const { user, isAuthenticated, isLoading } = useAuth0();
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div>
+            <header>
                 {isAuthenticated && !isLoading ? (
                     <div>
+                        <Home/>
                         <LogoutButton />
                     </div>
                 ) : (
-                    <LoginButton />
+                    <Welcome />
+                    
                 )}
             </header>
         </div>

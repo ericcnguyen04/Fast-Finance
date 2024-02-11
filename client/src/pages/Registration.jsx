@@ -1,3 +1,5 @@
+import 'bulma/css/bulma.min.css';
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";

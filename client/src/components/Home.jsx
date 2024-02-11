@@ -1,8 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import "bulma/css/bulma.min.css";
 import { useEffect, useState } from "react";
-import Whatif from "./Whatif";
-import Graph from "./Graph";
 
 export default function Home() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -11,6 +9,70 @@ export default function Home() {
     const [savings, setSavings] = useState({});
     const [credit_card, setCC] = useState({});
     const [total_spend, setSpend] = useState(0.0);
+    const [usr, setUser] = useState({});
+
+    let instruments = [
+        {
+            name: "360 Performance Savings",
+            interest: 4.35,
+            risk_score: "LOW",
+            formula: (principal, monthly_contribution, time, interest) => {
+                let rate = interest / 100;
+                let months = time * 12;
+                for (let i = 1; i <= months; i++) {
+                    principal += monthly_contribution;
+                    principal += principal * (rate / 12);
+                }
+                return principal.toFixed(2);
+            },
+        },
+        {
+            name: "360 CD Account",
+            interest: 4.0,
+            risk_score: "LOW",
+            formula: (principal, monthly_contribution, time, interest) => {
+                let rate = interest / 100;
+                let months = time * 12;
+                for (let i = 1; i <= months; i++) {
+                    principal += monthly_contribution;
+                    principal += principal * (rate / 12);
+                }
+                return principal.toFixed(2);
+            },
+        },
+        {
+            name: "5 Year Treasury Bond",
+            interest: 4.101,
+            risk_score: "LOW",
+            formula: (principal, monthly_contribution, time, interest) => {
+                let rate = interest / 100;
+                let months = time * 12;
+                for (let i = 1; i <= months; i++) {
+                    principal += monthly_contribution;
+                    if (months % 6 === 0) {
+                        principal += principal * (rate / 12);
+                    }
+                }
+                return principal.toFixed(2);
+            },
+        },
+        {
+            name: "5-Year HQM Corporate Bond",
+            interest: 4.8,
+            risk_score: "MEDIUM",
+            formula: (principal, monthly_contribution, time, interest) => {
+                let rate = interest / 100;
+                let months = time * 12;
+                for (let i = 1; i <= months; i++) {
+                    principal += monthly_contribution;
+                    if (months % 6 === 0) {
+                        principal += principal * (rate / 12);
+                    }
+                }
+                return principal.toFixed(2);
+            },
+        },
+    ];
 
     // will show all items
     useEffect(() => {
@@ -79,6 +141,7 @@ export default function Home() {
                     let spend = await getTotalSpend(account["_id"]);
                     total_value += spend.total_spend;
                 }
+                setUser(dbUser);
                 setChecking(accounts[0]);
                 setSavings(accounts[1]);
                 setCC(accounts[2]);
@@ -89,6 +152,13 @@ export default function Home() {
 
     return (
         <div>
+            <h1 style={{ fontSize: 36, color: "black" }}>
+                Your banking overview
+            </h1>
+            <h2 style={{ fontSize: 24, color: "black" }}>
+                Good morning,{" "}
+                {usr.hasOwnProperty("first_name") && usr.first_name}
+            </h2>
             <table className="table is-fullwidth is-hoverable">
                 <thead>
                     <tr>
@@ -207,7 +277,64 @@ export default function Home() {
                     </tr>
                 </tbody>
             </table>
-            <Whatif/>
+
+            <p style={{ color: "black" }}>
+                Let's begin with $1000 and invest one half of your monthly food
+                spending, ${total_spend.toFixed(2)}, every month.
+            </p>
+            <div class="column box is-two-third">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Financial Instrument</th>
+                            <th>Interest Rate</th>
+                            <th>Monthly Contribution</th>
+                            <th>5 Year Total</th>
+                            <th>Total Contribution</th>
+                            <th>Profit</th>
+                            <th>Risk Level</th>
+                            {/* <th>YTD Interest</th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {instruments.map((data, index) => (
+                            <tr key={index}>
+                                <td>{data.name}</td>
+                                <td>{data.interest}%</td>
+                                <td>${total_spend.toFixed(2)}</td>
+                                <td>
+                                    $
+                                    {data.formula(
+                                        1000,
+                                        total_spend,
+                                        5,
+                                        data.interest
+                                    )}
+                                </td>
+                                <td>
+                                    ${(1000 + 5 * 12 * total_spend).toFixed(2)}
+                                </td>
+                                <td>
+                                    $
+                                    {(
+                                        data.formula(
+                                            1000,
+                                            total_spend,
+                                            5,
+                                            data.interest
+                                        ) -
+                                        (1000 + 5 * 12 * total_spend)
+                                    ).toFixed(2)}
+                                </td>
+                                <td>{data.risk_score}</td>
+                                {/* <td>{data.yearlyContribution}</td> */}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            {/*<Whatif />*/}
             {/* <Graph/> */}
         </div>
     );

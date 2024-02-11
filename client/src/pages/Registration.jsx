@@ -8,14 +8,23 @@ const AuthRedir = () => {
     return !isLoading && !isAuthenticated && <Navigate to="/" />;
 };
 
-const AccountRedir = async (navigate, user) => {
+const AccountRedir = async (user) => {
     let API_URL = process.env.REACT_APP_API_URL;
     let response = await fetch(`${API_URL}/api/users/${user.sub}`, {
         method: "GET",
         redirect: "follow",
         mode: "cors",
     });
-    return response.status === 200;
+
+    let body = await response.json();
+
+    if (!body) {
+        return false;
+    }
+
+    let registered = body.registered === true ? true : false;
+
+    return response.status === 200 && registered;
 };
 
 function CreateUser(user) {
@@ -37,7 +46,6 @@ function CreateUser(user) {
 
 function UpdateUser(form_data) {
     (async () => {
-        console.log(form_data);
         let address = form_data.street_number
             ? form_data.street_number.split(" ")
             : "";
@@ -45,7 +53,6 @@ function UpdateUser(form_data) {
             form_data.street_number = address.shift();
             form_data.street_name = address.join(" ");
         }
-        console.log(form_data);
         await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
             method: "PUT",
             body: JSON.stringify(form_data),
@@ -59,13 +66,11 @@ function UpdateUser(form_data) {
 }
 
 function UpdateUsr(e) {
-    // e["auth0_uid"] = user.sub.auth0_uid;
-    console.log(e);
     UpdateUser(e);
 }
 
 const RegistrationForm = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isLoading } = useAuth0();
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
@@ -74,13 +79,9 @@ const RegistrationForm = () => {
     const [zip, setZip] = useState("");
     const [usr, setUsr] = useState();
 
-    console.log(`Loading: ${isLoading} | User: ${user.sub}`);
-
     useEffect(() => {
         if (!isLoading && user) {
             setUsr(user.sub);
-            console.log("setting");
-            console.log(usr);
         }
     }, [user, setUsr, isLoading, usr]);
 
@@ -157,13 +158,12 @@ function Registration() {
     return (
         <div>
             <AuthRedir />
-            <p>{JSON.stringify(user, undefined, 4)}</p>
             {React.useEffect(() => {
                 (async () => {
                     if (!isLoading && user) {
-                        let redir = AccountRedir(user, navigate);
-                        if (redir) {
-                            navigate("/content");
+                        let redir = await AccountRedir(user);
+                        if (redir === true) {
+                            navigate("/");
                         }
                         CreateUser(user);
                     }

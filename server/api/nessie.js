@@ -56,15 +56,14 @@ class Customer {
  * nickname -        string
  * rewards -         number
  * balance -         number
- * account_number -  string
+ * account_number -  string [INVALID ARGUMENT!] [REPORT TO CAPITAL ONE]
  */
 class Account {
-    constructor(type, nickname, rewards, balance, account_number) {
+    constructor(type, nickname, rewards, balance) {
         this.type = type;
         this.nickname = nickname;
         this.rewards = rewards;
         this.balance = balance;
-        this.account_number = account_number;
     }
 }
 
@@ -72,6 +71,7 @@ class Account {
  * Class for a purchase Object
  * merchant_id -     string
  * medium -          string
+ * purchase_date -   string
  * amount -          number
  * status -          string
  * description -     string
@@ -308,6 +308,7 @@ class Nessie {
      * Return ResponseType
      */
     async create_account(customer_id, account) {
+        console.log(JSON.stringify(account, null, 4));
         let response = await this.POST(
             `/customers/${customer_id}/accounts`,
             JSON.stringify(account)
@@ -320,6 +321,8 @@ class Nessie {
         if (response.status == 201) {
             return ResponseType.SUCCESS;
         }
+
+        console.log(response.data);
 
         return ResponseType.SERVER_FAILURE;
     }
@@ -492,6 +495,122 @@ class Nessie {
     }
 
     // END PURCHASES
+
+    // START MERCHANTS
+
+    /*
+     * Fetch all merchants
+     * category? - string
+     * return [] | ResponseType
+     */
+    async get_merchants(category = "") {
+        let response = await this.GET("/merchants");
+
+        if (response == ResponseType.EXCEPTION) {
+            return ResponseType.EXCEPTION;
+        }
+
+        if (response.status != 200) {
+            return ResponseType.SERVER_FAILURE;
+        }
+
+        let requested_merchants = [];
+
+        for (let merchant of response.data) {
+            if (!merchant || !merchant.category) {
+                continue;
+            }
+            if (merchant.category.includes(category)) {
+                requested_merchants.push(merchant);
+            }
+        }
+
+        console.log(`Found: ${requested_merchants.length} merchants!`);
+
+        return requested_merchants;
+    }
+
+    // END MERCHANTS
+
+    // START DUMMY
+
+    /*
+     * Generate dummy checking, savings, and credit card accounts.
+     * customer_id - string
+     * Return [] | ResponseType
+     */
+    async dummy_accounts(customer_id) {
+        try {
+            const randomBalance = (min, max) => {
+                let float = Math.random() * (max - min + 1) + min;
+                return Math.round(float * Math.pow(10, 2)) / Math.pow(10, 2);
+            };
+
+            let checking = new Account(
+                "Checking",
+                "360 Checking",
+                0.0,
+                randomBalance(4500, 10000)
+            );
+            checking = await this.create_account(customer_id, checking);
+
+            console.log(checking);
+
+            let savings = new Account(
+                "Savings",
+                "360 Performance Savings",
+                0.0,
+                randomBalance(8500, 15000)
+            );
+            savings = await this.create_account(customer_id, savings);
+
+            let credit_card = new Account(
+                "Credit Card",
+                "Savor One Rewards",
+                randomBalance(25, 150),
+                randomBalance(400, 780)
+            );
+            credit_card = await this.create_account(customer_id, credit_card);
+
+            const randomDate = (start, days_prior) => {
+                let end = new Date();
+                end.setDate(end.getDate() - days_prior);
+                var date = new Date(+start + Math.random() * (end - start));
+                return date.toISOString().split("T")[0];
+            };
+
+            let food_merchants = await this.get_merchants("food");
+
+            const random_merchant = () => {
+                var index = Math.floor(Math.random() * food_merchants.length);
+                return food_merchants[index];
+            };
+
+            const generatePurchases = async (account_id, n) => {
+                for (let i = 0; i < n; i++) {
+                    let date = randomDate(Date.now(), 14);
+                    let cost = randomBalance(8, 35);
+                    let merchant = random_merchant();
+                    let p = new Purchase(
+                        merchant["_id"],
+                        "balance",
+                        date,
+                        cost,
+                        "posted",
+                        `$${cost} @ ${merchant}`
+                    );
+                    await this.create_purchase(account_id, p);
+                }
+            };
+
+            await generatePurchases(checking["_id"], 50);
+            await generatePurchases(credit_card["_id"], 50);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    // END DUMMY
 }
 
 module.exports = { Nessie, Customer, Account, Purchase };

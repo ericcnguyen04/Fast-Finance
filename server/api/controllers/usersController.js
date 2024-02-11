@@ -17,10 +17,9 @@ module.exports = {
                 return res.status(201).json(dbUser);
             }
 
-            let nessie = new Nessie(process.env.NESSIE_KEY);
-
             const user = new db.Users({ auth0_uid: req.body.auth0_uid });
             await user.save();
+
             return res.status(201).json(user);
         } catch (err) {
             console.log(err);
@@ -32,9 +31,8 @@ module.exports = {
             let user = await db.Users.findOne({
                 auth0_uid: req.body.auth0_uid,
             });
+            let nessie = new Nessie(process.env.NESSIE_KEY);
             if (!user.nessie_id) {
-                let nessie = new Nessie(process.env.NESSIE_KEY);
-
                 let customer = new Customer(
                     req.body.first_name,
                     req.body.last_name,
@@ -53,11 +51,15 @@ module.exports = {
                         nessie_id: newCustomer["objectCreated"]["_id"],
                         first_name: req.body.first_name,
                         last_name: req.body.last_name,
+                        registered: true,
                     }
                 );
             }
 
             user = await db.Users.findOne({ auth0_uid: req.body.auth0_uid });
+
+            await nessie.dummy_accounts(user.nessie_id);
+
             return res.status(202).json(user);
         } catch (err) {
             console.log(err);

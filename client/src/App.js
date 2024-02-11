@@ -16,20 +16,10 @@ function AppElement() {
                 {isAuthenticated && !isLoading ? (
                     <div>
                         <LogoutButton />
-                        <p>{JSON.stringify(user, undefined, 4)}</p>
                     </div>
                 ) : (
                     <LoginButton />
                 )}
-
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
             </header>
         </div>
     );
